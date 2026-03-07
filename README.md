@@ -1,18 +1,15 @@
 # Challenge Back End -  Alura Latam y ONE (Oracle Next Generation)
 MIT License © 2026
---
 
 # 🎓 FOROHUB G9 - API REST CHALLENGE 
 
 ## DESCRIPCIÓN
---
 
 ForoHub es una API REST desarrollada con Spring Boot para gestionar un foro.
 Los usuarios autenticados pueden crear tópicos de discusión, listar y eliminarlos.
 Revisar los requisitos del challenge en [Trello](https://trello.com/b/9DeAlIsq/foro-hub-challenge-back-end).
 
 ## ✨ CARACTERÍSTICAS PRINCIPALES
---
 
 - 🔐 Autenticación JWT + Spring Security (permitAll en login, authenticated en resto)
 - 📝 CRUD Tópicos con con validación y paginación
@@ -20,7 +17,6 @@ Revisar los requisitos del challenge en [Trello](https://trello.com/b/9DeAlIsq/f
 - 🧪 Validaciones @Valid + Custom Exceptions
 
 ## 🛠️ TECNOLOGÍAS
---
 
 [![Java 17](https://img.shields.io/badge/Java-17-blue.svg)]
 [![Spring Boot 4.0.3](https://img.shields.io/badge/Spring%20Boot-4.0.3-green.svg)]
@@ -35,7 +31,6 @@ Revisar los requisitos del challenge en [Trello](https://trello.com/b/9DeAlIsq/f
 [![JSpecify 0.3.0](https://img.shields.io/badge/JSpecify-0.3.0-lightblue.svg)]
 
 ## 🚀 INSTALACIÓN RÁPIDA
---
 
 1. Clona el repo
    ```
@@ -63,7 +58,6 @@ CREATE DATABASE forohub;
 
 
 ## 🗄️ BASE DE DATOS
---
 
 Después de ejecutar la aplicacion, se crean las siguientes tablas:
 - usuarios (id, login, password)
@@ -91,7 +85,6 @@ PUT    | /topicos/{id}   | Actualizar          | ✅ Token
 DELETE | /topicos/{id}   | Eliminar            | ✅ Token
 
 ## Ejemplos
---
 
 ### Login
 ```
