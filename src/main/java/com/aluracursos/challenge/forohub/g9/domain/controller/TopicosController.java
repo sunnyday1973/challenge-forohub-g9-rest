@@ -1,13 +1,13 @@
-package com.aluracursos.challenge.forohub.g9.controller;
+package com.aluracursos.challenge.forohub.g9.domain.controller;
 
-import com.aluracursos.challenge.forohub.g9.DatosListaTopicosModelAssembler;
-import com.aluracursos.challenge.forohub.g9.Topico;
-import com.aluracursos.challenge.forohub.g9.TopicoRepository;
-import com.aluracursos.challenge.forohub.g9.dto.DatosActualizacionTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosDetalleTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosListaTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosRegistroTopico;
-import com.aluracursos.challenge.forohub.g9.validaciones.TopicoService;
+import com.aluracursos.challenge.forohub.g9.domain.topico.DatosListaTopicosModelAssembler;
+import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosDetalleTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.validaciones.TopicoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

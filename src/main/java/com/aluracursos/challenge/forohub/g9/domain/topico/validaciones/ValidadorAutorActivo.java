@@ -1,7 +1,6 @@
-package com.aluracursos.challenge.forohub.g9.validaciones;
+package com.aluracursos.challenge.forohub.g9.domain.topico.validaciones;
 
-import com.aluracursos.challenge.forohub.g9.dto.DatosRegistroTopico;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
 import org.springframework.stereotype.Component;
 
 @Component

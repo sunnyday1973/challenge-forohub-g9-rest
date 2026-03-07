@@ -1,6 +1,6 @@
-package com.aluracursos.challenge.forohub.g9;
+package com.aluracursos.challenge.forohub.g9.domain.topico;
 
-import com.aluracursos.challenge.forohub.g9.dto.DatosListaTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopico;
 import lombok.NonNull;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

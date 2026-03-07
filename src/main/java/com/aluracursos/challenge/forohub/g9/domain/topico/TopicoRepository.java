@@ -1,4 +1,4 @@
-package com.aluracursos.challenge.forohub.g9;
+package com.aluracursos.challenge.forohub.g9.domain.topico;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

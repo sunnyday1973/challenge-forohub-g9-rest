@@ -1,6 +1,5 @@
-package com.aluracursos.challenge.forohub.g9.dto;
+package com.aluracursos.challenge.forohub.g9.domain.topico.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,8 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DatosRegistroTopico(
-        Long id,
+public record DatosActualizacionTopico(
+        //Long id,
 
         @NotBlank
         String titulo,
@@ -17,7 +16,6 @@ public record DatosRegistroTopico(
         @NotBlank
         String mensaje,
 
-        LocalDateTime fechaCreacion,
         LocalDateTime fechaActualizacion,
 
         Boolean status,
@@ -26,8 +24,9 @@ public record DatosRegistroTopico(
         Long autor,
 
         @NotBlank
-        String curso,
+        String curso
 
-        String respuestas
-) {
+        //, String respuestas
+    ) {
+
 }

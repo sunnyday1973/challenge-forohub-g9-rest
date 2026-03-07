@@ -1,17 +1,14 @@
-package com.aluracursos.challenge.forohub.g9.validaciones;
+package com.aluracursos.challenge.forohub.g9.domain.topico.validaciones;
 
-import com.aluracursos.challenge.forohub.g9.Topico;
-import com.aluracursos.challenge.forohub.g9.TopicoRepository;
-import com.aluracursos.challenge.forohub.g9.dto.DatosActualizacionTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosDetalleTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosRegistroTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosResultadoRegistroTopico;
-import com.aluracursos.challenge.forohub.g9.validaciones.exepciones.ValidacionException;
+import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosResultadoRegistroTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.validaciones.exepciones.ValidacionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,6 @@
-package com.aluracursos.challenge.forohub.g9.dto;
+package com.aluracursos.challenge.forohub.g9.domain.topico.dto;
 
-import com.aluracursos.challenge.forohub.g9.Topico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
 import java.time.LocalDateTime;
 
 

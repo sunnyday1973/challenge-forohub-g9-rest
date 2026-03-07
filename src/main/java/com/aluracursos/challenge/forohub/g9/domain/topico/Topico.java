@@ -1,7 +1,7 @@
-package com.aluracursos.challenge.forohub.g9;
+package com.aluracursos.challenge.forohub.g9.domain.topico;
 
-import com.aluracursos.challenge.forohub.g9.dto.DatosActualizacionTopico;
-import com.aluracursos.challenge.forohub.g9.dto.DatosRegistroTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
