@@ -8,6 +8,7 @@ import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosDetalleTopico
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.validaciones.TopicoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.data.web.SortDefault;
 
 
+@SecurityRequirement(name = "bearer-key")
 @RestController
 @RequestMapping("/topicos")
 public class TopicosController {
