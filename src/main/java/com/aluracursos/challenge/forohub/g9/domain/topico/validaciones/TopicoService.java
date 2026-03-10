@@ -3,11 +3,14 @@ package com.aluracursos.challenge.forohub.g9.domain.topico.validaciones;
 import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopicos;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosResultadoRegistroTopico;
 import com.aluracursos.challenge.forohub.g9.domain.exepciones.ValidacionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +24,37 @@ public class TopicoService {
 
     @Autowired
     private List<ValidadorDeTopico> validadores;
+
+    public Page<DatosListaTopicos> listar(Pageable paginacion, String curso, Integer anio) {
+        Page<DatosListaTopicos> pagina;
+        if (curso != null && anio != null) {
+            // Ambos criterios
+            pagina = topicoRepository
+                    .findAllByStatusTrueAndCursoContainingIgnoreCaseAndFechaCreacionYear(curso, anio, paginacion)
+                    .map(DatosListaTopicos::new);
+        } else if (curso != null) {
+            // Solo curso
+            pagina = topicoRepository
+                    .findAllByStatusTrueAndCursoContainingIgnoreCase(curso, paginacion)
+                    .map(DatosListaTopicos::new);
+        } else if (anio != null) {
+            // Solo año
+            pagina = topicoRepository
+                    .findAllByStatusTrueAndFechaCreacionYear(anio, paginacion)
+                    .map(DatosListaTopicos::new);
+        } else {
+            // Todos
+            pagina = topicoRepository
+                    .findAllByStatusTrue(paginacion)
+                    .map(DatosListaTopicos::new);
+        }
+
+        return pagina;
+    }
+
+    public Topico detallar(Long id) {
+        return topicoRepository.getReferenceById(id);
+    }
 
     public DatosResultadoRegistroTopico crear(DatosRegistroTopico datos) {
         // La API no debe permitir el registro de tópicos duplicados con el mismo título

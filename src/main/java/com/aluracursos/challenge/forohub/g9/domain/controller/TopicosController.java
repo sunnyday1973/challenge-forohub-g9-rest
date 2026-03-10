@@ -2,7 +2,6 @@ package com.aluracursos.challenge.forohub.g9.domain.controller;
 
 import com.aluracursos.challenge.forohub.g9.domain.topico.DatosListaTopicosModelAssembler;
 import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
-import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosDetalleTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopicos;
@@ -29,8 +28,6 @@ import org.springframework.data.web.SortDefault;
 @RestController
 @RequestMapping("/topicos")
 public class TopicosController {
-    @Autowired
-    private TopicoRepository topicoRepository;
 
     @Autowired
     private TopicoService topicoService;
@@ -60,29 +57,7 @@ public class TopicosController {
                                                                              @SortDefault(sort = "fechaCreacion", direction = Sort.Direction.ASC)
                                                                             @PageableDefault(size = 10)
                                                                             Pageable paginacion) {
-        Page<DatosListaTopicos> pagina;
-
-        if (curso != null && anio != null) {
-            // Ambos criterios
-            pagina = topicoRepository
-                    .findAllByStatusTrueAndCursoContainingIgnoreCaseAndFechaCreacionYear(curso, anio, paginacion)
-                    .map(DatosListaTopicos::new);
-        } else if (curso != null) {
-            // Solo curso
-            pagina = topicoRepository
-                    .findAllByStatusTrueAndCursoContainingIgnoreCase(curso, paginacion)
-                    .map(DatosListaTopicos::new);
-        } else if (anio != null) {
-            // Solo año
-            pagina = topicoRepository
-                    .findAllByStatusTrueAndFechaCreacionYear(anio, paginacion)
-                    .map(DatosListaTopicos::new);
-        } else {
-            // Todos
-            pagina = topicoRepository
-                    .findAllByStatusTrue(paginacion)
-                    .map(DatosListaTopicos::new);
-        }
+        Page<DatosListaTopicos> pagina = topicoService.listar(paginacion, curso, anio);
 
         var lista = pagedResourcesAssembler.toModel(pagina, datosListaTopicosModelAssembler);
         System.out.println(lista);
@@ -91,8 +66,7 @@ public class TopicosController {
 
     @GetMapping("/{id}")
     public ResponseEntity detallar(@PathVariable Long id) {
-
-        var topico = topicoRepository.getReferenceById(id);
+        var topico = topicoService.detallar(id);
 
         return ResponseEntity.ok(new DatosDetalleTopico(topico));
     }
