@@ -5,7 +5,7 @@ import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosActualizacionTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosRegistroTopico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosResultadoRegistroTopico;
-import com.aluracursos.challenge.forohub.g9.domain.topico.validaciones.exepciones.ValidacionException;
+import com.aluracursos.challenge.forohub.g9.domain.exepciones.ValidacionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +22,16 @@ public class TopicoService {
     @Autowired
     private List<ValidadorDeTopico> validadores;
 
-    public DatosResultadoRegistroTopico crearTopico(DatosRegistroTopico datos) {
-        // La API no debe permitir el registro de tópicos duplicados (con el mismo título y mensaje).
+    public DatosResultadoRegistroTopico crear(DatosRegistroTopico datos) {
+        // La API no debe permitir el registro de tópicos duplicados con el mismo título
         if (topicoRepository.existsByTituloIgnoreCase(datos.titulo())) {
             throw new ValidacionException("Tópico duplicado: mismo título");
         }
-/*
-        if(datos.autor() != null && !tipicoRepository.existsById(datos.autor())) {
-            throw new ValidacionException("No existe un autor con el id informado");
-        }
-*/
+        /* TODO: cuanto este Usuario, descomentar esa validacion
+                if(datos.autor() != null && !tipicoRepository.existsById(datos.autor())) {
+                    throw new ValidacionException("No existe un autor con el id informado");
+                }
+        */
         // validaciones
         validadores.forEach(v -> v.validar(datos));
 
@@ -39,14 +39,15 @@ public class TopicoService {
         return new DatosResultadoRegistroTopico(topico);
     }
 
-    public Topico actualizarDatosTopico(Long id, @Valid DatosActualizacionTopico datos) {
+    public Topico actualizar(Long id, @Valid DatosActualizacionTopico datos) {
         // 1. Buscar el tópico por ID
         Optional<Topico> topicoExistente = topicoRepository.findById(id);
+
+        // 2. Verificar si existe con isPresent()
         if (!topicoExistente.isPresent()) {
             throw new ValidacionException("No existe un topico con el id informado");
         }
 
-        // 2. Verificar si existe con isPresent()
         if(datos.autor() != null && !topicoRepository.existsByAutor(datos.autor())) {
             throw new ValidacionException("No existe un autor con el id informado");
         }
@@ -59,7 +60,7 @@ public class TopicoService {
         return topico;
     }
 
-    public void elimiarTopico(Long id) {
+    public void elimiar(Long id) {
         Optional<Topico>  topicoExistente = topicoRepository.findById(id);
         if (!topicoExistente.isPresent()) {
             throw new ValidacionException("No existe un topico con el id informado");

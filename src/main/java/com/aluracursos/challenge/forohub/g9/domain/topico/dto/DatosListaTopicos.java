@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DatosListaTopico(
+public record DatosListaTopicos(
         Long id,
         String titulo,
         String mensaje,
@@ -15,7 +15,7 @@ public record DatosListaTopico(
         Long autor,
         String curso
 ) {
-    public DatosListaTopico(Topico topico) {
+    public DatosListaTopicos(Topico topico) {
         this(
                 topico.getId(),
                 topico.getTitulo(),

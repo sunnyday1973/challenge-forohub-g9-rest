@@ -3,7 +3,7 @@ package com.aluracursos.challenge.forohub.g9.domain.controller;
 import com.aluracursos.challenge.forohub.g9.domain.topico.Topico;
 import com.aluracursos.challenge.forohub.g9.domain.topico.TopicoRepository;
 import com.aluracursos.challenge.forohub.g9.domain.topico.dto.*;
-import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopico;
+import com.aluracursos.challenge.forohub.g9.domain.topico.dto.DatosListaTopicos;
 import com.aluracursos.challenge.forohub.g9.domain.topico.validaciones.TopicoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class TopicosControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private JacksonTester<DatosListaTopico> datosRegistroTopicoJson;
+    private JacksonTester<DatosListaTopicos> datosRegistroTopicoJson;
 
     @Autowired
     private JacksonTester<DatosResultadoRegistroTopico> datosResultadoRegistroTopicoJson;
@@ -49,7 +49,7 @@ class TopicosControllerTest {
     private JacksonTester<DatosDetalleTopico> datosDetalleTopicoJson;
 
     @Autowired
-    private JacksonTester<DatosListaTopico> datosListaTopicoJson;
+    private JacksonTester<DatosListaTopicos> datosListaTopicoJson;
 
     @MockitoBean
     private TopicoService topicoService;
@@ -72,11 +72,11 @@ class TopicosControllerTest {
     void crearConBody() throws Exception {
         var datosResultado = new DatosResultadoRegistroTopico(1L, "Registro titulo", "Prueba"
                 , LocalDateTime.now(), true, 1L, "G8");
-        when(topicoService.crearTopico(any())).thenReturn(datosResultado);
+        when(topicoService.crear(any())).thenReturn(datosResultado);
         var response = mockMvc.perform(post("/topicos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(datosRegistroTopicoJson.write(
-                                new DatosListaTopico(
+                                new DatosListaTopicos(
                                          1L, "Registro titulo", "Prueba", null
                                         , true, 1L, "G8"
                                 )
@@ -181,7 +181,7 @@ class TopicosControllerTest {
         // El controlador espera que el servicio devuelva un objeto Topico
         var topicoSimulado = new Topico(); // Asegúrate de que no sea null para que devuelva 200
 
-        when(topicoService.actualizarDatosTopico(any(), any())).thenReturn(topicoSimulado);
+        when(topicoService.actualizar(any(), any())).thenReturn(topicoSimulado);
 
         var response = mockMvc.perform(put("/topicos/1")
                 .contentType(MediaType.APPLICATION_JSON)

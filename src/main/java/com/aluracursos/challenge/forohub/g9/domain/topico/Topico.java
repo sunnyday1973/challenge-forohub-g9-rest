@@ -65,7 +65,7 @@ public class Topico {
         if (datos.curso() != null) {
             this.curso = datos.curso();
         }
-        /*
+        /* TODO: cuando este lista la entidad Respuestas, implementar esa propiedad
         if (datos.respuestas() != null) {
             this.respuestas.actualizarRespuestas(datos.respuestas());
         }
